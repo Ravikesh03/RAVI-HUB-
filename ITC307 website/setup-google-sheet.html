@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheet Setup Helper - Fiji Task Marketplace</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .setup-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin: 20px 0;
+        }
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="setup-card p-4">
+                    <div class="text-center mb-4">
+                        <h1 class="text-primary mb-3">
+                            <i class="fas fa-cog"></i> Google Sheet Setup Helper
+                        </h1>
+                        <p class="text-muted">Follow these steps to set up your Google Sheet for the Fiji Task Marketplace</p>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Your Google Sheet:</strong> 
+                        <a href="https://docs.google.com/spreadsheets/d/1iVD0Sy5snBbCVjKY0X7TXfSRIGjbLLMS5ca-jiTHe84/edit?gid=0#gid=0" target="_blank">
+                            View Your Sheet
+                        </a>
+                    </div>
+
+                    <div class="step-item d-flex align-items-start mb-4">
+                        <div class="step-number">1</div>
+                        <div class="flex-grow-1">
+                            <h5>Create Bids Sheet</h5>
+                            <p>Your current sheet has tasks. You need to add a second sheet for bids.</p>
+                            <div class="code-block">
+                                <strong>Sheet Name:</strong> Bids<br>
+                                <strong>Headers (Row 1):</strong><br>
+                                Task ID | Bidder Name | Amount | Message | Estimated Time | Status
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm mt-2" onclick="copyHeaders()">
+                                <i class="fas fa-copy"></i> Copy Headers
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="step-item d-flex align-items-start mb-4">
+                        <div class="step-number">2</div>
+                        <div class="flex-grow-1">
+                            <h5>Share Your Sheet</h5>
+                            <p>Make sure your Google Sheet is accessible to the website.</p>
+                            <ul>
+                                <li>Click "Share" in the top right of your Google Sheet</li>
+                                <li>Click "Change to anyone with the link"</li>
+                                <li>Set permission to "Editor"</li>
+                                <li>Copy the sharing link</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step-item d-flex align-items-start mb-4">
+                        <div class="step-number">3</div>
+                        <div class="flex-grow-1">
+                            <h5>Get API Key</h5>
+                            <p>You need a Google Sheets API key to connect your website to the sheet.</p>
+                            <a href="https://console.cloud.google.com/" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt"></i> Go to Google Cloud Console
+                            </a>
+                            <div class="mt-2">
+                                <small class="text-muted">
+                                    • Create a new project<br>
+                                    • Enable Google Sheets API<br>
+                                    • Create API credentials<br>
+                                    • Copy the API key
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-item d-flex align-items-start mb-4">
+                        <div class="step-number">4</div>
+                        <div class="flex-grow-1">
+                            <h5>Update Website</h5>
+                            <p>Add your API key to the website configuration.</p>
+                            <div class="code-block">
+                                // Open js/google-sheets-api.js<br>
+                                // Find line 4: this.apiKey = '';<br>
+                                // Replace with: this.apiKey = 'YOUR_API_KEY_HERE';
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-item d-flex align-items-start mb-4">
+                        <div class="step-number">5</div>
+                        <div class="flex-grow-1">
+                            <h5>Test Integration</h5>
+                            <p>Verify everything is working correctly.</p>
+                            <a href="test-integration.html" class="btn btn-success">
+                                <i class="fas fa-vial"></i> Test Integration
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <a href="home.html" class="btn btn-primary btn-lg">
+                            <i class="fas fa-home"></i> Back to Homepage
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function copyHeaders() {
+            const headers = "Task ID\tBidder Name\tAmount\tMessage\tEstimated Time\tStatus";
+            navigator.clipboard.writeText(headers).then(() => {
+                alert('Headers copied to clipboard! Paste them into the first row of your Bids sheet.');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = headers;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Headers copied to clipboard! Paste them into the first row of your Bids sheet.');
+            });
+        }
+    </script>
+</body>
+</html>

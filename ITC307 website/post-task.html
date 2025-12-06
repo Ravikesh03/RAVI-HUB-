@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Task - Fiji Task Marketplace</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="home.html">
+                <i class="fas fa-tasks me-2"></i>Fiji Task Marketplace
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="browse-tasks.html">Browse Tasks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="post-task.html">Post a Task</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">Profile</a>
+                    </li>
+                </ul>
+                
+                <div class="navbar-nav">
+                    <a class="nav-link btn btn-outline-light me-2" href="login.html">Login</a>
+                    <a class="nav-link btn btn-success" href="signup.html">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container" style="margin-top: 100px;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Progress Bar -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="progress mb-3" style="height: 8px;">
+                            <div class="progress-bar" id="progressBar" role="progressbar" style="width: 25%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="step-indicator active" data-step="1">
+                                <i class="fas fa-info-circle"></i> Basic Info
+                            </span>
+                            <span class="step-indicator" data-step="2">
+                                <i class="fas fa-dollar-sign"></i> Budget & Deadline
+                            </span>
+                            <span class="step-indicator" data-step="3">
+                                <i class="fas fa-map-marker-alt"></i> Location
+                            </span>
+                            <span class="step-indicator" data-step="4">
+                                <i class="fas fa-check-circle"></i> Review & Post
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Container -->
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="mb-0"><i class="fas fa-plus me-2"></i>Post a New Task</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="postTaskForm">
+                            <!-- Step 1: Basic Information -->
+                            <div class="step-content" id="step1">
+                                <h5 class="mb-4">Basic Information</h5>
+                                
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="mb-3">
+                                            <label for="taskTitle" class="form-label">Task Title *</label>
+                                            <input type="text" class="form-control" id="taskTitle" required 
+                                                   placeholder="e.g., House Cleaning Needed in Suva">
+                                            <div class="form-text">Be specific and clear about what you need</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="taskCategory" class="form-label">Category *</label>
+                                            <select class="form-select" id="taskCategory" required>
+                                                <option value="">Select Category</option>
+                                                <option value="Delivery">Delivery</option>
+                                                <option value="Cleaning">Cleaning</option>
+                                                <option value="Tutoring">Tutoring</option>
+                                                <option value="Handyman">Handyman</option>
+                                                <option value="Gardening">Gardening</option>
+                                                <option value="Technology">Technology</option>
+                                                <option value="Pet Care">Pet Care</option>
+                                                <option value="Event Planning">Event Planning</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="taskDescription" class="form-label">Detailed Description *</label>
+                                    <textarea class="form-control" id="taskDescription" rows="5" required
+                                              placeholder="Provide detailed information about the task, requirements, and any specific instructions..."></textarea>
+                                    <div class="form-text">Include all relevant details to help doers understand the task</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="taskSkills" class="form-label">Required Skills</label>
+                                            <input type="text" class="form-control" id="taskSkills" 
+                                                   placeholder="e.g., Experience with cleaning, reliable">
+                                            <div class="form-text">Optional: List any specific skills or experience needed</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="taskDuration" class="form-label">Estimated Duration</label>
+                                            <select class="form-select" id="taskDuration">
+                                                <option value="">Select Duration</option>
+                                                <option value="1-2 hours">1-2 hours</option>
+                                                <option value="2-4 hours">2-4 hours</option>
+                                                <option value="4-8 hours">4-8 hours</option>
+                                                <option value="1 day">1 day</option>
+                                                <option value="2-3 days">2-3 days</option>
+                                                <option value="1 week">1 week</option>
+                                                <option value="Ongoing">Ongoing</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Budget & Deadline -->
+                            <div class="step-content" id="step2" style="display: none;">
+                                <h5 class="mb-4">Budget & Deadline</h5>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="budgetType" class="form-label">Budget Type *</label>
+                                            <select class="form-select" id="budgetType" required>
+                                                <option value="">Select Type</option>
+                                                <option value="fixed">Fixed Price</option>
+                                                <option value="range">Price Range</option>
+                                                <option value="negotiable">Negotiable</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="budgetCurrency" class="form-label">Currency</label>
+                                            <select class="form-select" id="budgetCurrency">
+                                                <option value="FJD">FJD (Fijian Dollar)</option>
+                                                <option value="USD">USD (US Dollar)</option>
+                                                <option value="AUD">AUD (Australian Dollar)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" id="budgetInputs">
+                                    <div class="col-md-6" id="fixedPriceInput" style="display: none;">
+                                        <div class="mb-3">
+                                            <label for="fixedAmount" class="form-label">Fixed Amount *</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">$</span>
+                                                <input type="number" class="form-control" id="fixedAmount" min="1" step="0.01">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" id="rangeInputs" style="display: none;">
+                                        <div class="mb-3">
+                                            <label for="minAmount" class="form-label">Minimum Amount *</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">$</span>
+                                                <input type="number" class="form-control" id="minAmount" min="1" step="0.01">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" id="maxAmountInput" style="display: none;">
+                                        <div class="mb-3">
+                                            <label for="maxAmount" class="form-label">Maximum Amount *</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">$</span>
+                                                <input type="number" class="form-control" id="maxAmount" min="1" step="0.01">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="taskDeadline" class="form-label">Deadline *</label>
+                                            <input type="date" class="form-control" id="taskDeadline" required>
+                                            <div class="form-text">When do you need this task completed?</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="urgencyLevel" class="form-label">Urgency Level</label>
+                                            <select class="form-select" id="urgencyLevel">
+                                                <option value="normal">Normal</option>
+                                                <option value="urgent">Urgent</option>
+                                                <option value="very-urgent">Very Urgent</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Location -->
+                            <div class="step-content" id="step3" style="display: none;">
+                                <h5 class="mb-4">Location & Contact</h5>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="taskLocation" class="form-label">Location *</label>
+                                            <select class="form-select" id="taskLocation" required>
+                                                <option value="">Select Location</option>
+                                                <option value="Suva">Suva</option>
+                                                <option value="Nadi">Nadi</option>
+                                                <option value="Lautoka">Lautoka</option>
+                                                <option value="Labasa">Labasa</option>
+                                                <option value="Sigatoka">Sigatoka</option>
+                                                <option value="Ba">Ba</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="specificAddress" class="form-label">Specific Address</label>
+                                            <input type="text" class="form-control" id="specificAddress" 
+                                                   placeholder="Street address or landmark">
+                                            <div class="form-text">Optional: Provide specific address or meeting point</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="contactPhone" class="form-label">Contact Phone</label>
+                                            <input type="tel" class="form-control" id="contactPhone" 
+                                                   placeholder="+679 123 4567">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="contactEmail" class="form-label">Contact Email</label>
+                                            <input type="email" class="form-control" id="contactEmail" 
+                                                   placeholder="your.email@example.com">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="showContactInfo">
+                                        <label class="form-check-label" for="showContactInfo">
+                                            Show contact information to doers
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 4: Review & Post -->
+                            <div class="step-content" id="step4" style="display: none;">
+                                <h5 class="mb-4">Review & Post</h5>
+                                
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    Please review your task details before posting. You can go back to make changes.
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <h6 class="mb-0">Task Summary</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <h6 id="reviewTitle"></h6>
+                                                <p class="text-muted" id="reviewDescription"></p>
+                                                <div class="d-flex gap-3">
+                                                    <span class="badge bg-primary" id="reviewCategory"></span>
+                                                    <span class="badge bg-secondary" id="reviewLocation"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 text-end">
+                                                <h5 class="text-success" id="reviewBudget"></h5>
+                                                <small class="text-muted" id="reviewDeadline"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="taskVisibility" class="form-label">Task Visibility</label>
+                                            <select class="form-select" id="taskVisibility">
+                                                <option value="public">Public (Visible to all)</option>
+                                                <option value="private">Private (Invite only)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="autoAccept" class="form-label">Auto-Accept Bids</label>
+                                            <select class="form-select" id="autoAccept">
+                                                <option value="manual">Manual Review</option>
+                                                <option value="auto">Auto-Accept (First bid)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                        <label class="form-check-label" for="agreeTerms">
+                                            I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and 
+                                            <a href="privacy.html" target="_blank">Privacy Policy</a>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Navigation Buttons -->
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-secondary" id="prevBtn" onclick="previousStep()" style="display: none;">
+                                    <i class="fas fa-arrow-left me-2"></i>Previous
+                                </button>
+                                <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextStep()">
+                                    Next<i class="fas fa-arrow-right ms-2"></i>
+                                </button>
+                                <button type="submit" class="btn btn-success" id="submitBtn" style="display: none;">
+                                    <i class="fas fa-paper-plane me-2"></i>Post Task
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">Fiji Task Marketplace</h5>
+                    <p class="text-muted">
+                        Connecting skills with opportunities across Fiji. 
+                        Build your reputation and grow your business with our trusted platform.
+                    </p>
+                </div>
+                
+                <div class="col-lg-2 mb-4">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="browse-tasks.html" class="text-muted text-decoration-none">Browse Tasks</a></li>
+                        <li><a href="post-task.html" class="text-muted text-decoration-none">Post a Task</a></li>
+                        <li><a href="how-it-works.html" class="text-muted text-decoration-none">How It Works</a></li>
+                        <li><a href="safety.html" class="text-muted text-decoration-none">Safety</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 mb-4">
+                    <h6 class="fw-bold mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="help.html" class="text-muted text-decoration-none">Help Center</a></li>
+                        <li><a href="contact.html" class="text-muted text-decoration-none">Contact Us</a></li>
+                        <li><a href="terms.html" class="text-muted text-decoration-none">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="text-muted text-decoration-none">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h6 class="fw-bold mb-3">Connect With Us</h6>
+                    <div class="d-flex gap-3 mb-3">
+                        <a href="#" class="text-muted"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <p class="text-muted small">
+                        © 2024 Fiji Task Marketplace. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/google-sheets-api.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/post-task.js"></script>
+</body>
+</html>
